@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theatre for Professionals — Jo Arnett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #E8845A;
+    --orange-light: #FDF0E8;
+    --orange-mid: #F4C4A0;
+    --orange-dark: #C4603A;
+    --dark: #1E1A18;
+    --dark-mid: #3A3330;
+    --gray: #6B6460;
+    --gray-light: #F5F1EE;
+    --white: #FEFCFB;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(254,252,251,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(232,132,90,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  .nav-cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+    background: var(--orange);
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--orange-dark) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 5.5vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+    max-width: 38ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .btn-primary {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--orange);
+    padding: 1rem 2.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--orange); }
+
+  .btn-secondary::after {
+    content: '↓';
+    font-size: 1rem;
+  }
+
+  .hero-right {
+    background: var(--orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: var(--orange-mid);
+    opacity: 0.3;
+    top: -100px;
+    right: -150px;
+  }
+
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.12;
+    bottom: 80px;
+    left: 30px;
+  }
+
+  .hero-quote {
+    position: relative;
+    z-index: 1;
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .hero-quote-mark {
+    font-family: var(--serif);
+    font-size: 8rem;
+    line-height: 0.5;
+    color: var(--orange);
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-quote p {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--dark-mid);
+    max-width: 30ch;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-quote cite {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--dark);
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-strip-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .about-strip-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .about-strip-title em { font-style: italic; color: var(--orange); }
+
+  .about-strip-body {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(254,252,251,0.7);
+  }
+
+  .about-strip-body p + p { margin-top: 1.25rem; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(232,132,90,0.2);
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(254,252,251,0.5);
+  }
+
+  /* WORKSHOPS */
+  .workshops {
+    padding: 7rem 5rem;
+    background: var(--white);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(232,132,90,0.2);
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+  }
+
+  .section-title em { font-style: italic; color: var(--orange); }
+
+  .section-note {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--gray);
+    max-width: 28ch;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .workshops-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .workshop-card {
+    background: var(--gray-light);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .workshop-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .workshop-card:hover::before { transform: scaleX(1); }
+  .workshop-card:hover { background: var(--orange-light); }
+
+  .workshop-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--orange);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .workshop-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .workshop-tagline {
+    font-size: 0.85rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(107,100,96,0.15);
+  }
+
+  .workshop-outcomes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .workshop-outcomes li {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.5;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .workshop-outcomes li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+  }
+
+  .workshop-footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(107,100,96,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .workshop-price {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.04em;
+  }
+
+  .workshop-duration {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: var(--orange-light);
+    padding: 7rem 5rem;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--orange-mid);
+  }
+
+  .how-step {
+    padding: 3rem;
+    border-right: 1px solid var(--orange-mid);
+    position: relative;
+  }
+
+  .how-step:last-child { border-right: none; }
+
+  .how-step-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .how-step-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .how-step-body {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial {
+    padding: 8rem 5rem;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+
+  .testimonial-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--dark-mid);
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .testimonial-quote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 3px;
+    background: var(--orange);
+  }
+
+  .testimonial-credit {
+    margin-top: 2rem;
+    padding-left: 2.5rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.04em;
+  }
+
+  .testimonial-role {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray);
+    margin-top: 0.2rem;
+  }
+
+  .testimonial-right {
+    padding: 3.5rem;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-right::after {
+    content: '"';
+    font-family: var(--serif);
+    font-size: 18rem;
+    line-height: 0.6;
+    color: var(--orange);
+    opacity: 0.06;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .testimonial-right-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-right-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-right-body {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(254,252,251,0.6);
+    line-height: 1.8;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--dark);
+    padding: 8rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: start;
+  }
+
+  .contact-left {}
+
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-title em { font-style: italic; color: var(--orange); }
+
+  .contact-body {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(254,252,251,0.6);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-item-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    min-width: 5rem;
+  }
+
+  .contact-item-value {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(254,252,251,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item-value:hover { color: var(--orange); }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(254,252,251,0.4);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--white);
+    background: rgba(254,252,251,0.06);
+    border: 1px solid rgba(232,132,90,0.2);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(254,252,251,0.25); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--orange); }
+
+  .form-group select option { background: var(--dark); color: var(--white); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--orange);
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-mid);
+    padding: 2.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(232,132,90,0.15);
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(254,252,251,0.5);
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba(254,252,251,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-tagline {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(254,252,251,0.35);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow  { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-title    { animation: fadeUp 0.6s ease 0.25s both; }
+  .hero-subtitle { animation: fadeUp 0.6s ease 0.4s both; }
+  .hero-actions  { animation: fadeUp 0.6s ease 0.55s both; }
+  .hero-quote    { animation: fadeUp 0.7s ease 0.4s both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Theatre <span>for Professionals</span></a>
+  <ul class="nav-links">
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Workshop</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Corporate Training &amp; Facilitation</p>
+    <h1 class="hero-title">
+      The stage<br>
+      is a <em>skill set.</em><br>
+      Bring it<br>
+      to work.
+    </h1>
+    <p class="hero-subtitle">Workshops that use theatre technique to build real professional skills — presence, communication, and collaboration.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Workshop</a>
+      <a href="#workshops" class="btn-secondary">See the workshops</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-quote">
+      <span class="hero-quote-mark">"</span>
+      <p>Theatre education is more than learning how to perform. It is tools and techniques to present yourself.</p>
+      <cite>Jo Arnett, Theatre Coach</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="about-strip" id="about">
+  <div>
+    <p class="about-strip-label">About Jo</p>
+    <h2 class="about-strip-title">Facilitator.<br>Coach.<br><em>Theatre nerd.</em></h2>
+  </div>
+  <div>
+    <div class="about-strip-body">
+      <p>Jo Arnett is a Learning &amp; Development professional, facilitator, and curriculum designer with 10+ years of theatre experience and a track record of bringing that expertise into professional environments that actually need it.</p>
+      <p>As NextGen Community Manager at Black Girl Ventures, Jo facilitates programming for thousands of founders, entrepreneurs, and emerging leaders. Through Never Stop Playing LLC, she brings Theatre for Professionals to corporate teams who want their people to communicate with more clarity, confidence, and intention.</p>
+      <p>She has trained 50+ entrepreneurs in public speaking via Aspen Institute Idea Festival cohorts. Her workshops aren't performance training — they're professional development that happens to use the stage.</p>
+    </div>
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years of theatre</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Professionals trained</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Core workshops</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<section class="workshops" id="workshops">
+  <div class="section-header">
+    <div>
+      <p class="section-label">What we offer</p>
+      <h2 class="section-title">Three workshops.<br><em>One method.</em></h2>
+    </div>
+    <p class="section-note">Each workshop runs 4–8 hours and is fully customized to your team's goals and context.</p>
+  </div>
+
+  <div class="workshops-grid">
+    <div class="workshop-card">
+      <span class="workshop-num">01</span>
+      <h3 class="workshop-title">Public Speaking &amp; Confidence</h3>
+      <p class="workshop-tagline">For professionals who need to own the room — in presentations, panels, or high-stakes conversations.</p>
+      <ul class="workshop-outcomes">
+        <li>Build a compelling story rooted in real professional experience</li>
+        <li>Use body and voice intentionally to communicate presence</li>
+        <li>Practice warm-up techniques for presentations and interviews</li>
+        <li>Receive direct 1:1 feedback during live delivery</li>
+        <li>Leave with memorization tools and a story ready to use</li>
+      </ul>
+      <div class="workshop-footer">
+        <span class="workshop-price">Starting at $2,500</span>
+        <span class="workshop-duration">4–8 hrs</span>
+      </div>
+    </div>
+
+    <div class="workshop-card">
+      <span class="workshop-num">02</span>
+      <h3 class="workshop-title">Networking with Ease &amp; Intention</h3>
+      <p class="workshop-tagline">For professionals who want to connect authentically — not just exchange cards.</p>
+      <ul class="workshop-outcomes">
+        <li>Explore intentional communication through physical warm-ups</li>
+        <li>Practice introducing yourself as a leader with presence</li>
+        <li>Develop a personal narrative that opens professional doors</li>
+        <li>Learn to hold space and make genuine connections</li>
+        <li>Build confidence in unscripted professional interactions</li>
+      </ul>
+      <div class="workshop-footer">
+        <span class="workshop-price">Starting at $2,500</span>
+        <span class="workshop-duration">4–8 hrs</span>
+      </div>
+    </div>
+
+    <div class="workshop-card">
+      <span class="workshop-num">03</span>
+      <h3 class="workshop-title">Team Community &amp; Collaboration</h3>
+      <p class="workshop-tagline">For teams that want to work better together — by actually understanding each other.</p>
+      <ul class="workshop-outcomes">
+        <li>Build trust and psychological safety through ensemble exercises</li>
+        <li>Practice non-verbal communication and active listening</li>
+        <li>Strengthen collaborative decision-making and shared vocabulary</li>
+        <li>Identify each team member's communication strengths</li>
+        <li>Leave with a shared experience that carries into daily work</li>
+      </ul>
+      <div class="workshop-footer">
+        <span class="workshop-price">Starting at $2,500</span>
+        <span class="workshop-duration">4–8 hrs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-header" style="border-bottom-color: rgba(232,132,90,0.3);">
+    <div>
+      <p class="section-label">The process</p>
+      <h2 class="section-title">Simple from<br><em>start to finish.</em></h2>
+    </div>
+    <p class="section-note">No complicated procurement. Just a conversation, a plan, and a room.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step">
+      <span class="how-step-num">Step 01</span>
+      <h3 class="how-step-title">Select a Workshop</h3>
+      <p class="how-step-body">Choose the core skill area that fits your team's current moment — public speaking, networking, or team collaboration. Not sure? Jo will help you figure it out on the first call.</p>
+    </div>
+    <div class="how-step">
+      <span class="how-step-num">Step 02</span>
+      <h3 class="how-step-title">Customize It</h3>
+      <p class="how-step-body">Jo works with you before the session to understand your team's context, industry, and goals. Every activity is adapted to make it relevant to the work your people actually do.</p>
+    </div>
+    <div class="how-step">
+      <span class="how-step-num">Step 03</span>
+      <h3 class="how-step-title">Run the Workshop</h3>
+      <p class="how-step-body">4 to 8 hours of hands-on, in-person practice. Real exercises. Direct 1:1 feedback. Skills participants leave with — not slides they forget by Thursday.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL / PHILOSOPHY -->
+<section class="testimonial">
+  <div>
+    <blockquote class="testimonial-quote">
+      Something happens in the room right before a session clicks. The nerves settle. The voices get steadier. People stop reciting what they practiced and start saying what they mean.
+    </blockquote>
+    <div class="testimonial-credit">
+      <p class="testimonial-name">Jo Arnett</p>
+      <p class="testimonial-role">Theatre Coach &amp; Facilitator</p>
+    </div>
+  </div>
+  <div class="testimonial-right">
+    <p class="testimonial-right-label">Why theatre works</p>
+    <h3 class="testimonial-right-title">The stage teaches what no slide deck can.</h3>
+    <p class="testimonial-right-body">Theatre is the original training ground for human communication. It teaches you how to read a room before you speak, how to hold attention without demanding it, and how to make someone feel like the moment they're in actually matters.<br><br>These aren't performance skills. They're professional skills. And every activity in Theatre for Professionals is designed to make them practical, learnable, and immediately usable — whether you're in a boardroom, a Zoom room, or a networking event.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <h2 class="contact-title">Let's build something<br>for your <em>team.</em></h2>
+    <p class="contact-body">Reach out to start a conversation. Whether you know exactly which workshop you need or just know your team could use something different, Jo will help you figure out the right fit.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <a href="mailto:Joisser@gmail.com" class="contact-item-value">Joisser@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Based in</span>
+        <span class="contact-item-value">Columbus, Ohio — available nationwide</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Format</span>
+        <span class="contact-item-value">In-person &amp; virtual available</span>
+      </div>
+    </div>
+  </div>
+  <form class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="First &amp; last name" required>
+      </div>
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" id="company" placeholder="Where you work">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="your@company.com" required>
+    </div>
+    <div class="form-group">
+      <label for="workshop">Workshop Interest</label>
+      <select id="workshop">
+        <option value="" disabled selected>Select a workshop</option>
+        <option>Public Speaking &amp; Confidence</option>
+        <option>Networking with Ease &amp; Intention</option>
+        <option>Team Community &amp; Collaboration</option>
+        <option>Not sure yet — let's talk</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="message">Anything else</label>
+      <textarea id="message" placeholder="Team size, timeline, goals — whatever's useful"></textarea>
+    </div>
+    <button type="submit" class="form-submit" id="submit-btn">Send Inquiry</button>
+  </form>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Theatre <span>for Professionals</span></a>
+  <span class="footer-tagline">Make sure you're bringing the real you wherever you go.</span>
+  <span class="footer-copy">© 2025 Never Stop Playing LLC</span>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sent. Jo will be in touch.';
+  btn.style.background = '#3A3330';
+  btn.disabled = true;
+}
+
+// Subtle scroll fade-in for sections
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.workshop-card, .how-step, .about-stats .stat-num').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
